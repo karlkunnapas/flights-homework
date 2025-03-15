@@ -37,11 +37,14 @@ public class FlightService {
             LocalDateTime time2 = LocalDateTime.of(from, LocalTime.of(20, 0));
             for (int i = 0; i < cities.size(); i++) {
                 for (int j = i + 1; j < cities.size(); j++) {
-                    flights.add(new FlightDTO(cities.get(i), cities.get(j), time1, 120, new BigDecimal("135").multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
-                    flights.add(new FlightDTO(cities.get(cities.size() - (i + 1)), cities.get(cities.size() - (j + 1)), time1, 120, new BigDecimal("135").multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
+                    BigDecimal price = BigDecimal.valueOf(random.ints(40, 300).findFirst().getAsInt());
+                    flights.add(new FlightDTO(cities.get(i), cities.get(j), time1, 120, price.multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
+                    price = BigDecimal.valueOf(random.ints(40, 300).findFirst().getAsInt());
+                    flights.add(new FlightDTO(cities.get(cities.size() - (i + 1)), cities.get(cities.size() - (j + 1)), time1, 120, price.multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
 
-                    flights.add(new FlightDTO(cities.get(i), cities.get(j), time2, 120, new BigDecimal("135").multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
-                    flights.add(new FlightDTO(cities.get(cities.size() - (i + 1)), cities.get(cities.size() - (j + 1)), time2, 120, new BigDecimal("135").multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
+                    flights.add(new FlightDTO(cities.get(i), cities.get(j), time2, 120, price.multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
+                    price = BigDecimal.valueOf(random.ints(40, 300).findFirst().getAsInt());
+                    flights.add(new FlightDTO(cities.get(cities.size() - (i + 1)), cities.get(cities.size() - (j + 1)), time2, 120, price.multiply(BigDecimal.valueOf(people)), random.ints(0, 218).findFirst().getAsInt()));
                 }
             }
             from = from.plusDays(1);
